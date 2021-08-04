@@ -1,0 +1,7 @@
+name: SMTP Authentication Support(Customize)
+description: "Allow for site emails to be sent through an SMTP server of your choice."
+package: DNC - Mail
+type: module
+core_version_requirement: ^9
+dependencies:
+  - smtp:smtp
