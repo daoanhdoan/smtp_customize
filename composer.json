@@ -1,9 +1,12 @@
 {
-  "name": "daoanhdoan/smtp_customize",
-  "description": "SMTP Authentication Support(Customize) - Allow for site emails to be sent through an SMTP server of your choice.",
- "type": "drupal-custom-module",
-  "license":"GPL-2.0",
-  "extra": {
-    "installer-name": "smtp_customize"
-  }
+    "name" : "daoanhdoan/smtp_customize",
+    "description": "SMTP Authentication Support(Customize) - Allow for site emails to be sent through an SMTP server of your choice.",
+    "type" : "drupal-custom-module",
+    "license": "GPL-2.0",
+    "extra": {
+        "installer-name": "smtp_customize"
+    },
+    "require": {
+        "smtp/smtp": "*"
+    }
 }
