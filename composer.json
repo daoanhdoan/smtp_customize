@@ -7,6 +7,6 @@
         "installer-name": "smtp_customize"
     },
     "require": {
-        "smtp/smtp": "*"
+        "drupal/smtp": "*"
     }
 }
