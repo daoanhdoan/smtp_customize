@@ -16,6 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface;
+use Symfony\Component\Mime\Header\UnstructuredHeader;
 
 /**
  * Modify the drupal mail system to use smtp when sending emails.
@@ -250,7 +251,7 @@ class SMTPCustomizeMailSystem implements MailInterface, ContainerFactoryPluginIn
 
     // Defines the From value to what we expect.
     $mailer->From = $from;
-    $mailer->FromName = Unicode::mimeHeaderEncode($from_name);
+    $mailer->FromName = (new UnstructuredHeader('name', $from_name))->getName();
     $mailer->Sender = $from;
 
     $hostname = $this->smtpConfig->get('smtp_client_hostname');
@@ -398,7 +399,7 @@ class SMTPCustomizeMailSystem implements MailInterface, ContainerFactoryPluginIn
           $bcc_recipients = explode(',', $value);
           foreach ($bcc_recipients as $bcc_recipient) {
             $bcc_comp = $this->getComponents($bcc_recipient);
-            $mailer->AddBCC($bcc_comp['email'], Unicode::mimeHeaderEncode($bcc_comp['name']));
+            $mailer->AddBCC($bcc_comp['email'], (new UnstructuredHeader($bcc_comp['name'], $from_name))->getName());
           }
           break;
 
